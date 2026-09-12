@@ -1,11 +1,14 @@
 name: collect
 on:
-  schedule:
-    # GitHub cron is best-effort and ran ~2h late on 2026-09-08, after the 08:30 KST scoring
-    # routine had already given up. These two slots leave 4.5h and 1.5h of slack before it.
-    - cron: "0 19 * * *"    # 04:00 KST
-    - cron: "0 22 * * *"    # 07:00 KST retry slot (skipped only if today's file already has postings)
+  # This template ships with the schedule off: a public fork would otherwise commit
+  # scraped postings every day with no profile to score them against. Uncomment the
+  # cron lines in your own fork and pick slots that leave the scoring routine slack —
+  # GitHub cron is best-effort and has run ~2h late.
+  # schedule:
+  #   - cron: "0 19 * * *"    # 04:00 KST
+  #   - cron: "0 22 * * *"    # 07:00 KST retry slot
   workflow_dispatch:
+
 permissions:
   contents: write
 concurrency: collect
