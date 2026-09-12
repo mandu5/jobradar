@@ -16,9 +16,12 @@
 
 ## Channels, in order
 
-1. **GeekNews** — 2026-09-13 or later (account created 09-06, 7-day gate). `geeknews.md`, type
-   Show. This is the primary channel: the Korean-board coverage is the differentiator and the
-   audience is here. First comment within ten minutes. Four hours on the thread.
+1. **GeekNews** — 2026-09-13 or later. Verified 09-12 16:22 KST: `/write` is gated with
+   "가입 후 일주일이 지나야 작성할 수 있습니다" (joined 09-06). `geeknews.md` has the form
+   fields, the title convention (the site prepends "Show GN:" — do not type it), and the body
+   rewritten to the site's guidelines (no-signup try path first, reproducible numbers, Show
+   type). Primary channel: the Korean-board coverage is the differentiator and the audience is
+   here. First comment within ten minutes. Four hours on the thread.
 2. **Show HN** — Tuesday 2026-09-15, 23:00 KST. `show-hn.md` title 1. Limitations comment
    within ten minutes.
 3. **r/ClaudeAI** — the day after HN. `reddit-discussions.md`.
