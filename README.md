@@ -16,8 +16,8 @@ new-grad lists. If you are job hunting in Korea, this is the part other tools do
 ## What it actually does
 
 ```
-04:00  GitHub Actions   collect      13 collectors → data/candidates/<date>.json
-08:00  Claude routine   score        your rubric → A / B / C, one line of reasoning each
+04:00  GitHub Actions   collect      12 collectors → data/candidates/<date>.json
+08:30  Claude routine   score        your rubric → A / B / C, one line of reasoning each
        .                finalize     RADAR.md + one email + tracker rows
        .
        YOU              approve      flip a row to "지원예정" in the tracker
@@ -72,7 +72,7 @@ silently returning zero postings.
 
 | Path | What |
 |---|---|
-| `radar/collectors/` | 13 source parsers |
+| `radar/collectors/` | 12 source parsers — 7 Korean boards, Greenhouse/Ashby/Lever across 22 company boards, new-grad lists, contests |
 | `radar/prefilter.py` | drops the obvious noise before anything is scored |
 | `radar/enrich.py`, `jd.py` | pulls the full posting text for shortlisted rows |
 | `radar/deadlines.py` | your own fixed deadlines, merged into the digest |
