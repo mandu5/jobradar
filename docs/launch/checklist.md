@@ -8,8 +8,11 @@
 - [x] No personal data in the tree or history (fresh repo, 2 commits; 84 files swept).
 - [x] `collect` cron off by default (a public fork would commit scraped data daily).
 - [x] README numbers match the code (12 collectors, 08:30 KST scoring).
+- [x] Fresh clone of the *public* repo installs and passes (author, 2026-09-12: 79 passed;
+      `collect --only saramin,jumpit` → 182 collected, 102 kept, 0 failures).
 - [ ] A second person has run `pip install -e . && pytest -q` on their machine.
-- [ ] A second person has run `python -m radar.collect` and got postings from at least one Korean source.
+- [ ] A second person has run `python -m radar.collect --only saramin,jumpit` and got postings.
+      Ask text in `smoke-test-request.md`; the test needs no profile and no login.
 
 ## Channels, in order
 
