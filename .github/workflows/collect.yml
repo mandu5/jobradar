@@ -1,0 +1,39 @@
+name: collect
+on:
+  schedule:
+    # GitHub cron is best-effort and ran ~2h late on 2026-09-08, after the 08:30 KST scoring
+    # routine had already given up. These two slots leave 4.5h and 1.5h of slack before it.
+    - cron: "0 19 * * *"    # 04:00 KST
+    - cron: "0 22 * * *"    # 07:00 KST retry slot (skipped only if today's file already has postings)
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: collect
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e . -q
+      - name: Collect
+        run: |
+          today=$(TZ=Asia/Seoul date +%F)
+          f="data/candidates/$today.json"
+          # An EXISTING file is not proof of a good collection. On 2026-09-08 the scoring routine
+          # ran first, fell back to collecting inside its own sandbox (no egress), and committed a
+          # file with zero postings — which then locked this job out for the rest of the day.
+          # Skip only when today's file actually holds postings.
+          if [ -f "$f" ] && [ "${{ github.event_name }}" = "schedule" ] \
+             && [ "$(python -c "import json;print(len(json.load(open('$f'))['postings']))")" -gt 0 ]; then
+            echo "already collected today"; exit 0
+          fi
+          python -m radar.collect --enrich 2>&1 | tee collect.log
+      - name: Commit candidates
+        run: |
+          git config user.name "job-radar-bot"
+          git config user.email "job-radar-bot@users.noreply.github.com"
+          git add data/candidates data/seen.json
+          git diff --cached --quiet && echo "nothing new" || git commit -m "collect $(TZ=Asia/Seoul date +%F)"
+          git pull --rebase --autostash origin main && git push origin main

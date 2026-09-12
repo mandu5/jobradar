@@ -1,0 +1,35 @@
+name: jd-fetch
+on:
+  push:
+    paths: ["data/scored/**", "data/apply/queue.json"]
+  workflow_dispatch:
+    inputs:
+      keys:
+        description: "comma-separated posting keys (optional)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+concurrency: jd-fetch
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -e . -q
+      - name: Fetch JDs (A + top-10 B of the latest scored day, plus queued keys)
+        run: |
+          latest=$(ls data/scored/*.json | sort | tail -1 | xargs -n1 basename | sed 's/.json//')
+          python -m radar.jdfetch --date "$latest"
+          if [ -n "${{ github.event.inputs.keys }}" ]; then python -m radar.jdfetch --keys "${{ github.event.inputs.keys }}"; fi
+          if [ -f data/apply/queue.json ]; then
+            python -m radar.jdfetch --keys "$(python -c "import json;print(','.join(json.load(open('data/apply/queue.json')).get('keys',[])))")"
+          fi
+      - name: Commit
+        run: |
+          git config user.name "job-radar-bot"; git config user.email "job-radar-bot@users.noreply.github.com"
+          git add data/jd
+          git diff --cached --quiet && echo "nothing new" || git commit -m "jd: $(TZ=Asia/Seoul date +%F)"
+          git pull --rebase --autostash origin main && git push origin main

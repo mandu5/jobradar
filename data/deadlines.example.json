@@ -1,0 +1,59 @@
+{
+  "_comment": "Fixed-date opportunities. These are not scraped postings — they are dates that must not slip, and the daily digest counts down to them. Copy to data/deadlines.json and replace with your own. Leave verified=false on any date you have not confirmed at the source; the email marks those as needing a check.",
+  "items": [
+    {
+      "id": "grad-app-round1",
+      "track": "grad school",
+      "title": "Round 1 application deadline",
+      "date": "2026-12-08",
+      "verified": true,
+      "note": "Earliest of the programs on the list; everything else keys off this one.",
+      "url": "https://example.edu/admissions"
+    },
+    {
+      "id": "recommendation-letters",
+      "track": "grad school",
+      "title": "Ask three referees",
+      "date": "2026-09-13",
+      "verified": true,
+      "note": "Eight weeks before the earliest deadline. Asking late is the usual way this slips.",
+      "url": ""
+    },
+    {
+      "id": "language-test",
+      "track": "grad school",
+      "title": "Language test score expires",
+      "date": "2028-05-01",
+      "verified": true,
+      "note": "Retake needed if any target deadline falls after this.",
+      "url": ""
+    },
+    {
+      "id": "working-holiday-lottery",
+      "track": "visa",
+      "title": "Working holiday registration opens",
+      "date": "2026-12-19",
+      "verified": false,
+      "note": "Age-capped programme — confirm the exact opening date at the source.",
+      "url": "https://example.gov/working-holiday"
+    },
+    {
+      "id": "public-sector-intake",
+      "track": "employer",
+      "title": "Autumn public-sector intake closes",
+      "date": "2026-09-30",
+      "verified": false,
+      "note": "Annual cycle; date is from last year and must be re-checked.",
+      "url": ""
+    },
+    {
+      "id": "conference-workshop-notification",
+      "track": "research",
+      "title": "Workshop decision notification",
+      "date": "2026-09-29",
+      "verified": true,
+      "note": "Result changes how the applications describe the paper.",
+      "url": ""
+    }
+  ]
+}
