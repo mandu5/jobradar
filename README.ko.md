@@ -16,6 +16,12 @@ Claude Code에서:
 /plugin install jobradar@jobradar
 ```
 
+또는 Claude Code·Codex·Cursor 등 공통으로, skills CLI로:
+
+```
+npx skills add mandu5/jobradar
+```
+
 그다음 이 저장소를 받아서 (`git clone https://github.com/mandu5/jobradar && cd jobradar && pip install -e .`):
 
 ```

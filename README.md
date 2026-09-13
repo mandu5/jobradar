@@ -17,6 +17,12 @@ In Claude Code:
 /plugin install jobradar@jobradar
 ```
 
+Or, for Claude Code and other agents (Codex, Cursor, …) via the skills CLI:
+
+```
+npx skills add mandu5/jobradar
+```
+
 Then, in a checkout of this repo (`git clone https://github.com/mandu5/jobradar && cd jobradar && pip install -e .`):
 
 ```
