@@ -22,8 +22,9 @@
    rewritten to the site's guidelines (no-signup try path first, reproducible numbers, Show
    type). Primary channel: the Korean-board coverage is the differentiator and the audience is
    here. First comment within ten minutes. Four hours on the thread.
-2. **Show HN** — Tuesday 2026-09-15, 23:00 KST. `show-hn.md` title 1. Limitations comment
-   within ten minutes.
+2. **Show HN** — posted early (Sun 09-13) and auto-flagged; see Log. Waiting on hn@ycombinator.com.
+   If unflagged: post the limitations comment immediately. If not: a new account cannot Show HN
+   cold — build karma with ordinary comments for 2-3 weeks, then retry in a Tue-Thu 14:00 UTC slot.
 3. **r/ClaudeAI** — the day after HN. `reddit-discussions.md`.
 4. **anthropics/claude-code Discussions** — Show and Tell, same day as Reddit.
 5. **awesome-claude-code** — not before the repo is 14 days old (2026-09-26) or has 100 stars.
@@ -36,6 +37,15 @@
   12:22, cid65367. Site prepends "Show GN:" and the domain itself. The human-verification
   checkbox must be clicked by a person; the 등록 button stays disabled until then.
 - T+0 snapshot: 0 stars, 0 forks, 0 views (GitHub traffic lags ~1h).
+- **2026-09-13 12:31 KST (Sun 03:31 UTC) — Show HN posted and auto-flagged within a minute.**
+  https://news.ycombinator.com/item?id=49679841, title "Show HN: Job search agent that grades
+  postings by your rubric and never applies" (79 chars; the draft's title 1 was 86 and would
+  have been cut at 80). API shows `dead: true`. Cause: brand-new account (mandu00005, karma 1,
+  first submission) — HN's new-account filter, not human flags. Comment box is gone, so the
+  limitations comment could not be posted. Posted off-schedule (Sunday, not the Tuesday slot)
+  at the author's call. Remedy: email hn@ycombinator.com asking for a manual unflag (draft in
+  Gmail); do NOT resubmit. Lesson for the checklist: a Show HN from a new account needs either
+  prior karma (a few weeks of ordinary comments) or a heads-up to the mods first.
 
 ## Measure
 
