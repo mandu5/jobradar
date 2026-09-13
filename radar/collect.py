@@ -33,7 +33,14 @@ def run_collectors(only: list[str] | None = None) -> tuple[list[Posting], dict[s
         try:
             got = mod.fetch()
             if not got:
-                failures[name] = "0 postings parsed (site structure changed?)"
+                # A collector that filters rows by role may set `last_raw` to the number of rows
+                # it parsed before filtering. Rows parsed but none relevant is a quiet day, not a
+                # broken parser; only an empty parse is a structure warning.
+                raw = getattr(mod, "last_raw", None)
+                if raw:
+                    print(f"[{name}] 0 relevant of {raw} parsed", file=sys.stderr)
+                else:
+                    failures[name] = "0 postings parsed (site structure changed?)"
             postings += got
             print(f"[{name}] {len(got)}", file=sys.stderr)
         except Exception as e:  # noqa: BLE001

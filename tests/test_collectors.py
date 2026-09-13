@@ -93,3 +93,17 @@ def test_greenhouse_foreign_board_keeps_only_early_career(fixture_json):
     posts = greenhouse.parse(raw, "anthropic", "Anthropic")
     assert [p.key for p in posts] == ["greenhouse:anthropic:2", "greenhouse:anthropic:3"]
     assert all(p.scope_hint == "해외대학원" for p in posts)
+
+
+def test_rows_parsed_but_none_relevant_is_not_a_failure(monkeypatch):
+    # A role-filtering collector reports how many rows it parsed via `last_raw`. Parsed rows
+    # with nothing relevant is a quiet day; an empty parse is the structure warning.
+    import types
+    from radar import collect
+
+    quiet = types.SimpleNamespace(last_raw=4, fetch=lambda: [])
+    broken = types.SimpleNamespace(last_raw=0, fetch=lambda: [])
+    plain = types.SimpleNamespace(fetch=lambda: [])  # a collector that never sets last_raw
+    monkeypatch.setattr(collect, "COLLECTORS", {"quiet": quiet, "broken": broken, "plain": plain})
+    _, failures = collect.run_collectors()
+    assert set(failures) == {"broken", "plain"} and "structure" in failures["broken"]
