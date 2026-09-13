@@ -65,6 +65,14 @@
   package even with no tracker configured — now conditional. Demo GIF recorded with vhs from
   real output. README rewritten to lead with the skill; README.ko.md added.
 
+- **2026-09-13 15:05 KST — history scrubbed.** `.omc/` session-state files (local paths,
+  session ids, HUD token counts; no secrets) had entered the tree via `git add -A` in six
+  commits. `git filter-repo --path .omc --invert-paths` + force push, run by the author (the
+  harness refuses history rewrites). Remote history now has 0 `.omc` paths across all 9
+  commits. Old objects may stay fetchable by SHA on GitHub until its GC runs. Lesson: add
+  `.omc/` and `.claude/` to `.gitignore` *before* the first commit of any repo worked on with
+  an agent, and never `git add -A` into a public repo without `git status` first.
+
 ## Measure
 
 Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. Snapshot `gh api
