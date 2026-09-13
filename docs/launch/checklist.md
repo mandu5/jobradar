@@ -29,6 +29,14 @@
 5. **awesome-claude-code** — not before the repo is 14 days old (2026-09-26) or has 100 stars.
    Web issue form, filled by a human, one-line factual description.
 
+## Log
+
+- **2026-09-13 12:20 KST — GeekNews posted.** https://news.hada.io/topic?id=33610 (Show GN,
+  title 1). First comment (rubric order + "cap the grade, name the fact that lifts it") at
+  12:22, cid65367. Site prepends "Show GN:" and the domain itself. The human-verification
+  checkbox must be clicked by a person; the 등록 button stays disabled until then.
+- T+0 snapshot: 0 stars, 0 forks, 0 views (GitHub traffic lags ~1h).
+
 ## Measure
 
 Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. Snapshot `gh api
