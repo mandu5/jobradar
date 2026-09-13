@@ -73,6 +73,12 @@
   `.omc/` and `.claude/` to `.gitignore` *before* the first commit of any repo worked on with
   an agent, and never `git add -A` into a public repo without `git status` first.
 
+- **2026-09-13 20:40 KST — T+8h.** GeekNews: 1 point (own), 1 comment (own). HN: dead, no mod
+  reply yet. GitHub: 0 stars, 0 views, 75 clones / 39 uniques (bots and CI). Shipped the hired-
+  story issue template + README section (the 71k repo's loop), the collector-failure and wrong-
+  grade issue routes, and ported the empty-parse-vs-empty-filter fix. claude-drift got the same
+  plugin packaging (0.2.0) with `/drift scan` as the free front door.
+
 ## Measure
 
 Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. Snapshot `gh api
