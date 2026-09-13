@@ -99,6 +99,13 @@ and GeekNews mail, and emails only on change. Verified over four runs on 09-13; 
 see from its sandbox (traffic stats, other repos' APIs, HN/GeekNews pages) is documented in the
 routine itself. Nobody needs to refresh these pages by hand.
 
+Since 2026-09-13 21:24 KST every run also rewrites a one-screen status page, `LAUNCH.md`, in the
+author's private ops repo: current stars/forks/watchers/open issues with day-over-day delta, the
+last known state of PR #1896 / Show HN / GeekNews / PyPI, an event log, and a 30-day star table.
+Verified end to end (run 92f5388: cloud sandbox, 79 s, file created, no mail because nothing
+changed). That page plus the change-only mail is the whole monitoring surface — readable from a
+phone, independent of any laptop being on.
+
 ## After
 
 - Every reported collector failure becomes an issue the same day, with the fixture that
