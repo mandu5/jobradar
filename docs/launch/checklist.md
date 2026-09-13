@@ -93,9 +93,11 @@
 ## Measure
 
 Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. A scheduled routine
-(`launch-watch-daily`, 09:30 KST) snapshots stars/forks/watchers/issues/traffic for both repos,
-the awesome-list PR, and the HN/GeekNews/PyPI state, and emails only on change. Nobody needs to
-refresh these pages by hand.
+(`launch-watch-daily`, 09:30 KST) snapshots stars/forks/watchers/open issues for both repos and
+the PyPI version, reads Gmail for HN moderator mail, GitHub notifications (PR #1896, new issues)
+and GeekNews mail, and emails only on change. Verified over four runs on 09-13; what it cannot
+see from its sandbox (traffic stats, other repos' APIs, HN/GeekNews pages) is documented in the
+routine itself. Nobody needs to refresh these pages by hand.
 
 ## After
 
