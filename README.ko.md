@@ -85,6 +85,13 @@ python -m radar.collect --only saramin,jumpit
 > **무인 모드로 쓰면 포크는 비공개로 두세요.** 수집 결과가 커밋되기 때문에 공개 포크는 내 구직
 > 활동을 공개하는 것과 같습니다. `profile/`은 gitignore로 막혀 있고, 일일 데이터는 아닙니다.
 
+## jobradar로 취업한 사람들
+
+아직 없습니다 — 첫 사용자가 제작자 본인이고, 구직 중입니다. jobradar가 고른 목록이 합격으로 이어지면
+[취업했어요](https://github.com/mandu5/jobradar/issues/new?template=i-got-hired.yml) 이슈를 열어 주세요.
+회사명은 안 적어도 됩니다. 알고 싶은 건 어떤 rubric 규칙이 결정적이었는지, 몇 건 채점해서 몇 건
+지원했는지, 그리고 괜찮으시다면 개인정보를 뺀 rubric — 두 번째 예시로 여기 링크하겠습니다.
+
 ## 소스 추가
 
 `radar/collectors/<이름>.py`에 `fetch()`/`parse()`를 만들고 `radar/collectors/__init__.py`에 등록,

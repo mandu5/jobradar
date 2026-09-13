@@ -1,0 +1,62 @@
+name: "취업했어요 / I got hired"
+description: jobradar를 쓰다가 합격했다면 — 다음 사람에게 가장 큰 도움이 되는 이슈입니다. Landed a role while using jobradar? This is the issue that helps the next person most.
+labels: ["hired"]
+title: "취업했어요 🎉 / I got hired"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        축하합니다. 회사 이름은 안 적어도 됩니다 — 어떤 종류의 자리였고 무엇이 실제로 도움이 됐는지가 핵심입니다.
+        Congrats. You don't have to name the company; what kind of role and what actually helped is the point.
+  - type: input
+    id: role
+    attributes:
+      label: 어떤 자리인가요? / What role?
+      placeholder: "예: 백엔드 신입, ML 엔지니어, 데이터 분석 / e.g. backend new grad, ML engineer"
+    validations:
+      required: true
+  - type: dropdown
+    id: market
+    attributes:
+      label: 어느 시장? / Which market?
+      options:
+        - 한국 (사람인·원티드·점핏 등) / Korea
+        - 글로벌 ATS (Greenhouse·Ashby·Lever)
+        - 둘 다 / both
+        - 기타 / other
+    validations:
+      required: true
+  - type: textarea
+    id: story
+    attributes:
+      label: 무엇이 실제로 도움이 됐나요? / What actually helped?
+      description: rubric의 어떤 규칙, 어떤 등급 판단, 어떤 패키지 초안이 결과로 이어졌는지. 솔직하게 — "별 도움 안 됐고 그냥 공고를 못 놓치게 해줬다"도 유효한 답입니다.
+      placeholder: "예: 직무 게이트 규칙 덕에 회사만 보고 지원하던 습관이 사라졌고, A 3건 중 하나에 붙었다 / e.g. the role gate stopped me applying to companies instead of roles; one of three A's came through"
+    validations:
+      required: true
+  - type: input
+    id: rubric_rule
+    attributes:
+      label: 가장 유용했던 rubric 규칙 한 줄 / The one rubric rule that mattered
+      placeholder: "예: 정보 부족하면 유리하게 추측 말고 등급에 상한 / e.g. cap the grade, name the fact that lifts it"
+  - type: input
+    id: volume
+    attributes:
+      label: 몇 건을 채점했고 몇 건에 지원했나요? / Graded how many, applied to how many?
+      placeholder: "예: 400건 채점 → 9건 지원 / e.g. 400 graded → 9 applied"
+  - type: input
+    id: duration
+    attributes:
+      label: 첫 scan부터 합격까지 / First scan to offer
+      placeholder: "예: 5주 / e.g. 5 weeks"
+  - type: textarea
+    id: rubric_share
+    attributes:
+      label: (선택) 개인정보를 뺀 rubric을 공유해 주실 수 있나요? / (optional) Share your rubric with personal details removed?
+      description: profile/ 에 두 번째 예시로 링크하고 싶습니다. 회사명·수치는 지우셔도 됩니다. / We'd like to link it from profile/ as a second example.
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: 공개 동의 / Consent
+      options:
+        - label: 이 이슈 내용을 README의 취업 사례 목록에 링크해도 됩니다 (회사명은 적은 만큼만). / You may link this issue from the README's hired list.

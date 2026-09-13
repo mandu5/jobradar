@@ -89,6 +89,14 @@ collector it had already run, and the digest went out blank.
 > **If you run unattended, keep your fork private.** The pipeline commits what it collects,
 > including which postings you were graded on. `profile/` is gitignored; the daily data is not.
 
+## Hired with jobradar
+
+No stories yet — the author is the first user, and is mid-search. When jobradar's shortlist
+turns into an offer for you, open a [취업했어요 / I got hired](https://github.com/mandu5/jobradar/issues/new?template=i-got-hired.yml)
+issue. You don't have to name the company. What we want to know is which rubric rule mattered,
+how many postings you graded versus applied to, and — if you're willing — your rubric with the
+personal details stripped, so it can be linked here as a second example.
+
 ## Adding a source
 
 Write `radar/collectors/<name>.py` with `fetch()` and `parse()`, register it in

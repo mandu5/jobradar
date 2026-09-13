@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 수집기가 깨졌어요 / A collector broke
+    url: https://github.com/mandu5/jobradar/issues/new?labels=collector&title=%5Bcollector%5D+
+    about: 어느 소스인지, `python -m radar.collect --only <source>` 출력, 그리고 가능하면 응답 HTML/JSON을 fixture로. / Name the source, paste the collect output, attach the raw response as a fixture if you can.
+  - name: 등급이 이상해요 / A grade looks wrong
+    url: https://github.com/mandu5/jobradar/issues/new?labels=grading&title=%5Bgrading%5D+
+    about: 공고·받은 등급·reason·그리고 어떤 사실이 빠졌는지. 답은 보통 rubric 규칙 한 줄입니다. / The posting, the grade, the reason, and what fact was missed. The fix is usually one rubric line.
