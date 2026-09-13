@@ -92,8 +92,10 @@
 
 ## Measure
 
-Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. Snapshot `gh api
-repos/mandu5/jobradar/traffic/views` daily after each channel; attribute by day, not by feeling.
+Baseline at publish (2026-09-12): 0 stars, 0 forks, 0 views. A scheduled routine
+(`launch-watch-daily`, 09:30 KST) snapshots stars/forks/watchers/issues/traffic for both repos,
+the awesome-list PR, and the HN/GeekNews/PyPI state, and emails only on change. Nobody needs to
+refresh these pages by hand.
 
 ## After
 
