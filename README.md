@@ -1,98 +1,121 @@
-# job-radar
+# jobradar
 
-A daily job search that runs itself: GitHub Actions scrapes the boards, a scheduled Claude Code
-routine grades every posting against **your** rubric, and you get one email with the three
-postings worth your morning — instead of ninety you will not read.
+A job search that runs inside Claude Code. It collects postings from Korean and global job
+boards, grades every one of them A/B/C against a rubric **you** wrote, and hands you the three
+worth reading instead of the ninety you would not. **It never applies for you.**
 
-It covers the **Korean job market** (사람인, 원티드, 점핏, 링커리어, 네이버, 라인, 우아한형제들,
-카카오·프로그래머스 alert mail) alongside the global ATS boards (Greenhouse, Ashby, Lever) and
-new-grad lists. If you are job hunting in Korea, this is the part other tools do not have.
+[한국어](README.ko.md)
 
-> **Warning, read this first.** The pipeline commits what it collects — including which postings
-> you were graded on and which you approved. **Keep your fork private.** `profile/profile.md`,
-> `profile/rubric.md` and `profile/corpus/` are gitignored so your résumé never lands in a public
-> repo by accident, but the daily data is not.
+![jobradar demo: collect from 사람인 and 점핏, then the graded RADAR.md](docs/demo.gif)
 
-## What it actually does
+## Install
+
+In Claude Code:
 
 ```
-04:00  GitHub Actions   collect      12 collectors → data/candidates/<date>.json
-08:30  Claude routine   score        your rubric → A / B / C, one line of reasoning each
-       .                finalize     RADAR.md + one email + tracker rows
-       .
-       YOU              approve      flip a row to "지원예정" in the tracker
-       .
-22:00  Claude routine   apply-draft  writes a full application package for approved rows only
+/plugin marketplace add mandu5/jobradar
+/plugin install jobradar@jobradar
 ```
 
-Two stages, and the split is the point. **Stage 1 never applies to anything.** It reads, grades,
-and reports. Stage 2 only touches postings you approved by hand, and it still does not submit —
-it writes the package and leaves the submitting to you.
+Then, in a checkout of this repo (`git clone https://github.com/mandu5/jobradar && cd jobradar && pip install -e .`):
 
-## Why it is split across a runner and a routine
-
-The scheduled agent sandbox has no outbound network access to job sites, so it cannot scrape.
-The Actions runner can. So collection runs on Actions and scoring runs in the agent, and they
-meet in a committed JSON file. `prompts/daily.md` documents the failure modes this produced —
-including the day an empty committed file convinced the collector it had already run, and quietly
-emptied the digest.
-
-## Setup
-
-```bash
-pip install -e .
-cp profile/profile.example.md profile/profile.md    # rewrite as yourself
-cp profile/rubric.example.md  profile/rubric.md     # your hard filters and weights
-python -m radar.collect                             # → data/candidates/<date>.json
-pytest -q
+```
+/jobradar setup    # five questions → profile/profile.md + profile/rubric.md
+/jobradar today    # collect, grade, write RADAR.md
 ```
 
-Then register `prompts/daily.md` as a scheduled Claude Code routine (replace every
-`<PLACEHOLDER>`), point it at your fork, and give it a mail connector. `prompts/apply.md` is the
-optional stage-2 routine.
+Python 3.10+ and one dependency (`requests`). No accounts, no API keys, nothing to sign up for.
+Everything runs on your machine, so 원티드 — which blocks datacenter IPs — works here.
+
+Want to try the collector before installing anything into Claude Code?
+
+```
+python -m radar.collect --only saramin,jumpit
+```
+
+## What it does
+
+```
+/jobradar setup    five questions: roles (and non-roles), experience rule, location,
+                   company-type order, what you optimize for → profile + rubric
+/jobradar scan     12 collectors → data/candidates/<today>.json      (network only)
+/jobradar grade    rubric → A / B / C, one line of reasoning each → RADAR.md
+/jobradar today    scan, then grade
+```
+
+Sources: 사람인, 원티드, 점핏, 링커리어, 네이버, 라인, 우아한형제들, LinkedIn (guest), Greenhouse /
+Ashby / Lever boards you list in `radar/config.py` (당근, 쿠팡, Anthropic, OpenAI, Stripe … 22
+shipped), a new-grad aggregator, and contests.
+
+## What it will not do
+
+Stage one — everything above — **never applies to anything.** It reads, grades, and reports.
+There is an optional stage two (`prompts/apply.md`) that drafts an application package, and it
+only runs for postings you approved by hand in a tracker, and it still does not submit; you do.
+An agent that both finds and applies will eventually apply somewhere you would not have, and
+you will find out from the recruiter.
 
 ## The two files that decide everything
 
-Everything else is plumbing. These two are the product:
+Everything else is plumbing. These are the product:
 
 - **`profile/profile.md`** — who you are, and specifically **what you are not**. Leave your
   weaknesses out and the scorer will hand you an A for a hardware role because it says "engineer".
 - **`profile/rubric.md`** — hard filters, weights, grade cutoffs. When a grade comes out wrong,
-  you edit this file, not the code, and tomorrow's run obeys. Every rule in the example started
-  as one badly-graded posting.
+  you edit this file, not the code, and the next `grade` obeys. Every rule in the example
+  started as one badly-graded posting. The strongest one is boring: *if a posting lists its open
+  roles and none of them is yours, it is a C no matter how good the company is.* And the most
+  useful one: *when information is missing, don't guess in your favour — cap the grade and name
+  the fact that would lift it.* A B that says "confirm the data track headcount → A" is
+  actionable; an optimistic A is not.
+
+Both files are gitignored, so they never end up in a public fork.
+
+## Unattended mode
+
+If you want it to run every morning without you, the same engine runs as two pieces:
+
+```
+04:00  GitHub Actions   collect        .github/workflows/collect.yml  (cron commented out)
+08:30  Claude routine   grade+finalize prompts/daily.md
+22:00  Claude routine   apply-draft    prompts/apply.md   (only for rows you approved)
+```
+
+Why split: the scheduled-agent sandbox has no outbound network access to job sites, so it cannot
+scrape. The Actions runner can. They meet in a committed JSON file. `prompts/daily.md` documents
+the failure modes that split produced — including the day an empty committed file convinced the
+collector it had already run, and the digest went out blank.
+
+> **If you run unattended, keep your fork private.** The pipeline commits what it collects,
+> including which postings you were graded on. `profile/` is gitignored; the daily data is not.
 
 ## Adding a source
 
 Write `radar/collectors/<name>.py` with `fetch()` and `parse()`, register it in
 `radar/collectors/__init__.py`, drop a sample response in `tests/fixtures/`, and add one test.
 Parsers are tested against saved fixtures, so a site redesign fails loudly in CI instead of
-silently returning zero postings.
+silently returning zero postings. `pytest -q` — 79 tests.
 
 ## Layout
 
 | Path | What |
 |---|---|
-| `radar/collectors/` | 12 source parsers — 7 Korean boards, Greenhouse/Ashby/Lever across 22 company boards, new-grad lists, contests |
-| `radar/prefilter.py` | drops the obvious noise before anything is scored |
+| `skills/jobradar/SKILL.md`, `commands/jobradar.md` | the Claude Code skill and its `/jobradar` command |
+| `radar/collectors/` | 12 source parsers |
+| `radar/prefilter.py` | drops the obvious noise before anything is graded |
 | `radar/enrich.py`, `jd.py` | pulls the full posting text for shortlisted rows |
 | `radar/deadlines.py` | your own fixed deadlines, merged into the digest |
 | `radar/finalize.py` | dedupe, `RADAR.md`, email HTML, tracker payload |
-| `prompts/` | the two routine prompts |
+| `prompts/` | the two routine prompts for unattended mode |
 | `.github/workflows/` | `collect`, `jd-fetch`, `test` |
 
-## 한국어
+## Known limits
 
-한국 채용 사이트를 매일 긁어서 **내 기준표대로** A/B/C 채점한 뒤, 아침에 메일 한 통으로 받는
-파이프라인입니다. 90건을 훑는 대신 3건만 봅니다.
-
-1단계는 **절대 지원하지 않습니다.** 읽고, 채점하고, 보고만 합니다. 내가 추적판에서 "지원예정"으로
-바꾼 공고에 한해 2단계가 밤에 지원서 패키지를 씁니다. 제출도 사람이 합니다.
-
-`profile/profile.md`(내 프로필)와 `profile/rubric.md`(채점표) 두 개가 전부입니다. 등급이 틀리면
-코드가 아니라 `rubric.md`를 고치면 다음 날부터 반영됩니다.
-
-**포크는 비공개로 두세요.** 수집 결과가 커밋되기 때문에, 공개 포크는 내 구직 활동을 공개하는 것과
-같습니다. 프로필·이력서·지원서는 `.gitignore`로 막아 뒀습니다.
+- 원티드 returns 403 from GitHub Actions (datacenter IPs). It works from a home connection.
+- Grade quality is exactly rubric quality. The shipped rubric is a template, not a good rubric.
+- Grading needs Claude Code. The collectors and the finalizer run anywhere.
+- Parsers break on redesigns; the fixture tests make that loud, not silent.
+- No auto-apply, on purpose. Issues about grading are welcome; that one is a design decision.
 
 ## License
 

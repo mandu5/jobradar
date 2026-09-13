@@ -4,7 +4,8 @@ import os
 
 # Where the digest links to. Set these for your own setup, or override with env vars.
 # TRACKER_URL is the page you flip a row to "approved" on; REPO_URL is where RADAR.md lives.
-TRACKER_URL = os.environ.get("JOB_RADAR_TRACKER_URL", "https://www.notion.so/")
+# Empty means "no tracker": RADAR.md then says approval is manual instead of linking anywhere.
+TRACKER_URL = os.environ.get("JOB_RADAR_TRACKER_URL", "")
 REPO_URL = os.environ.get("JOB_RADAR_REPO_URL", "https://github.com/OWNER/REPO")
 
 # Greenhouse boards to poll: board token -> display company name.

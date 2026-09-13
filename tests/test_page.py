@@ -48,10 +48,16 @@ def test_contests_are_sorted_by_deadline():
     assert md.index("빠른 대회") < md.index("늦은 대회")
 
 
-def test_notion_link_uses_the_resolvable_domain():
-    # app.notion.com/p/<id> does not open for every client; www.notion.so/<id> always redirects.
+def test_tracker_link_only_when_configured(monkeypatch):
+    # No tracker configured (the skill / local mode): no link, and no promise of a nightly package.
+    from radar import page
+    monkeypatch.setattr(page, "TRACKER_URL", "")
     md = _render()
-    assert "https://www.notion.so/" in md and "app.notion.com" not in md
+    assert "추적판" not in md and "22:00" not in md and "아무 데도 지원하지 않는다" in md
+    # Tracker configured (the unattended pipeline): link it with the resolvable notion domain.
+    monkeypatch.setattr(page, "TRACKER_URL", "https://www.notion.so/abc123")
+    md = _render()
+    assert "https://www.notion.so/abc123" in md and "app.notion.com" not in md
 
 
 def test_failures_are_reported_not_swallowed():

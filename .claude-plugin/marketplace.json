@@ -1,0 +1,15 @@
+{
+  "name": "jobradar",
+  "metadata": {
+    "description": "A job search that runs inside Claude Code: collect from Korean and global job boards, grade every posting against your own rubric, get the three worth reading. Never applies for you."
+  },
+  "owner": {
+    "name": "Youngmin Ko"
+  },
+  "plugins": [
+    {
+      "name": "jobradar",
+      "source": "./"
+    }
+  ]
+}

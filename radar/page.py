@@ -65,8 +65,10 @@ def render(today: str, scored: list[dict], upcoming: list[dict], stats: dict, fa
         "",
         f"`{today}` 기준 · A {len(a)} · B {len(b)} · 제외 {n_c} · 마감임박 {len(upcoming)} · 대회 {len(contests)}",
         "",
-        f"[추적판에서 승인하기]({TRACKER_URL}) — "
-        "지원할 공고는 상태를 **지원예정**으로 바꾸면 그날 밤 22:00에 지원서 패키지가 만들어진다.",
+        (f"[추적판에서 승인하기]({TRACKER_URL}) — "
+         "지원할 공고는 상태를 **지원예정**으로 바꾸면 그날 밤 22:00에 지원서 패키지가 만들어진다."
+         if TRACKER_URL else
+         "지원 여부는 사람이 정한다. 이 페이지는 읽을 공고를 고를 뿐, 아무 데도 지원하지 않는다."),
         "",
         "---",
         "",

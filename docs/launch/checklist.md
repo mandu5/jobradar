@@ -22,9 +22,16 @@
    rewritten to the site's guidelines (no-signup try path first, reproducible numbers, Show
    type). Primary channel: the Korean-board coverage is the differentiator and the audience is
    here. First comment within ten minutes. Four hours on the thread.
-2. **Show HN** — posted early (Sun 09-13) and auto-flagged; see Log. Waiting on hn@ycombinator.com.
-   If unflagged: post the limitations comment immediately. If not: a new account cannot Show HN
-   cold — build karma with ordinary comments for 2-3 weeks, then retry in a Tue-Thu 14:00 UTC slot.
+2. **Show HN** — posted early (Sun 09-13) and auto-flagged; see Log. Mail sent to
+   hn@ycombinator.com 13:10 KST. If unflagged: post the limitations comment immediately. If not:
+   a new account cannot Show HN cold — build karma with ordinary comments for 2-3 weeks, then
+   retry in a Tue-Thu 14:00 UTC slot **with the v0.2 skill install as the lead** (one command,
+   value in five minutes) and the demo GIF.
+2b. **Product Hunt** — after the skill has a few outside users. career-ops used it.
+2c. **The story, not the tool** — the 70k repo's growth came from "I built this and it got me
+   hired" (Business Insider, WIRED) plus a HIRED wall on the README. The author's own search is
+   the campaign: when jobradar's packages land an offer, that is the post for 요즘IT, 디스콰이엇,
+   GeekNews Weekly — and the first card on a HIRED wall.
 3. **r/ClaudeAI** — the day after HN. `reddit-discussions.md`.
 4. **anthropics/claude-code Discussions** — Show and Tell, same day as Reddit.
 5. **awesome-claude-code** — not before the repo is 14 days old (2026-09-26) or has 100 stars.
@@ -46,6 +53,17 @@
   at the author's call. Remedy: email hn@ycombinator.com asking for a manual unflag (draft in
   Gmail); do NOT resubmit. Lesson for the checklist: a Show HN from a new account needs either
   prior karma (a few weeks of ordinary comments) or a heads-up to the mods first.
+
+- **2026-09-13 14:45 KST — v0.2.0: the Claude Code skill.** Why: the 70k/42k repos in this
+  category (career-ops, ai-job-search) are one-command installs that run inside the agent —
+  ai-job-search is Danish-board-specific and has no Actions/routine/Notion at all. jobradar's
+  first five minutes required all three. Now: `/plugin marketplace add mandu5/jobradar`,
+  `/jobradar setup` (five questions → profile + rubric), `/jobradar today`. The skill recipe was
+  run end to end by hand in a fresh checkout: 32 jumpit postings → graded → coverage 0 missing →
+  finalize → RADAR.md A 2 / B 10 / C 20, with hardware/embedded/ops roles correctly cut for a
+  new-grad backend/ML persona. Fixed on the way: RADAR.md promised a Notion tracker and a 22:00
+  package even with no tracker configured — now conditional. Demo GIF recorded with vhs from
+  real output. README rewritten to lead with the skill; README.ko.md added.
 
 ## Measure
 

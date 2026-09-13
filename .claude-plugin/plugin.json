@@ -1,0 +1,25 @@
+{
+  "name": "jobradar",
+  "description": "Run a job search from inside Claude Code: /jobradar setup writes your profile and grading rubric from a five-question interview, /jobradar today collects from Korean boards (사람인, 원티드, 점핏, 링커리어, 네이버, 라인, 우아한형제들) and global ATS boards (Greenhouse, Ashby, Lever), grades every posting A/B/C against your rubric with one line of reasoning, and writes RADAR.md with the few worth reading. It never applies to anything.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Youngmin Ko",
+    "url": "https://github.com/mandu5"
+  },
+  "homepage": "https://github.com/mandu5/jobradar",
+  "repository": "https://github.com/mandu5/jobradar",
+  "license": "MIT",
+  "keywords": [
+    "job-search",
+    "job-hunting",
+    "korea",
+    "saramin",
+    "wanted",
+    "jumpit",
+    "greenhouse",
+    "ashby",
+    "lever",
+    "rubric",
+    "career"
+  ]
+}
