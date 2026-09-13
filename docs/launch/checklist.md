@@ -33,7 +33,7 @@
    the campaign: when jobradar's packages land an offer, that is the post for 요즘IT, 디스콰이엇,
    GeekNews Weekly — and the first card on a HIRED wall.
 3. **r/ClaudeAI** — the day after HN. `reddit-discussions.md`.
-4. **anthropics/claude-code Discussions** — Show and Tell, same day as Reddit.
+4. ~~**anthropics/claude-code Discussions**~~ — Discussions are disabled on that repo (`hasDiscussionsEnabled: false`, checked 09-13). Dropped.
 5. **awesome-claude-code** — not before the repo is 14 days old (2026-09-26) or has 100 stars.
    Web issue form, filled by a human, one-line factual description.
 
@@ -78,6 +78,17 @@
   story issue template + README section (the 71k repo's loop), the collector-failure and wrong-
   grade issue routes, and ported the empty-parse-vs-empty-filter fix. claude-drift got the same
   plugin packaging (0.2.0) with `/drift scan` as the free front door.
+
+- **2026-09-13 21:30 KST — distribution that needs no login.** Both repos verified discoverable
+  by `npx skills add mandu5/<repo> --list` (skills.sh registry indexes on first install; note a
+  different `jason-huanghao/jobradar` skill already exists there). README install sections now
+  carry the `npx skills add` path. PR opened to ComposioHQ/awesome-claude-skills (74.9k★):
+  https://github.com/ComposioHQ/awesome-claude-skills/pull/1896 — jobradar under Productivity &
+  Organization, claude-drift under Development & Code Tools, alphabetical, format matched.
+  Skipped: VoltAgent/awesome-agent-skills (34k, "brand new skills not accepted"),
+  travisvn/awesome-claude-skills (15k, needs social proof), ccplugins (vendors plugins into its
+  own repo). claude-drift 0.2.0 → PyPI, then 0.2.1 because `--version` was hard-coded at 0.1.1;
+  now read from package metadata with a test pinning it to pyproject.
 
 ## Measure
 
