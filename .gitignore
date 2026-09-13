@@ -10,3 +10,7 @@ profile/profile.md
 profile/rubric.md
 profile/corpus/
 data/out/
+
+# Claude Code / oh-my-claudecode session state — never commit
+.omc/
+.claude/
