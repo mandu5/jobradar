@@ -102,7 +102,7 @@ personal details stripped, so it can be linked here as a second example.
 Write `radar/collectors/<name>.py` with `fetch()` and `parse()`, register it in
 `radar/collectors/__init__.py`, drop a sample response in `tests/fixtures/`, and add one test.
 Parsers are tested against saved fixtures, so a site redesign fails loudly in CI instead of
-silently returning zero postings. `pytest -q` — 79 tests.
+silently returning zero postings. `pytest -q` — 80 tests.
 
 ## Layout
 

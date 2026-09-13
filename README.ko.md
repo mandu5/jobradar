@@ -96,7 +96,7 @@ python -m radar.collect --only saramin,jumpit
 
 `radar/collectors/<이름>.py`에 `fetch()`/`parse()`를 만들고 `radar/collectors/__init__.py`에 등록,
 `tests/fixtures/`에 응답 샘플 하나, 테스트 하나. 파서는 저장된 fixture로 테스트해서 사이트 개편이
-CI에서 소리내며 깨지지, 조용히 0건을 내진 않습니다. `pytest -q` — 79개.
+CI에서 소리내며 깨지지, 조용히 0건을 내진 않습니다. `pytest -q` — 80개.
 
 ## 알려진 한계
 
