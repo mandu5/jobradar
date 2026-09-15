@@ -1,6 +1,6 @@
 [project]
 name = "job-radar"
-version = "0.2.0"
+version = "0.2.1"
 description = "Daily job-posting radar: collect, prefilter, score, deliver"
 requires-python = ">=3.10"
 dependencies = ["requests>=2.31"]

@@ -43,14 +43,14 @@ python -m radar.collect --only saramin,jumpit
 ```
 /jobradar setup    질문 5개: 원하는 직무(와 아닌 직무), 경력 기준, 지역, 회사 유형 순서,
                    최우선 가치 → 프로필 + 채점표
-/jobradar scan     수집기 12개 → data/candidates/<오늘>.json       (네트워크만, 모델 호출 없음)
+/jobradar scan     수집기 10개 → data/candidates/<오늘>.json       (네트워크만, 모델 호출 없음)
 /jobradar grade    채점표 → A / B / C, 한 줄 근거 → RADAR.md
 /jobradar today    scan 후 grade
 ```
 
-소스: 사람인, 원티드, 점핏, 링커리어, 네이버, 라인, 우아한형제들, LinkedIn(게스트), `radar/config.py`에
-적은 Greenhouse / Ashby / Lever 보드(당근, 쿠팡, Anthropic, OpenAI, Stripe 등 22개 기본 탑재), 신입
-어그리게이터, 공모전.
+소스: 사람인, 원티드, 점핏, 링커리어, 네이버, 라인, `radar/config.py`에 적은 Greenhouse / Ashby /
+Lever 보드(당근, 쿠팡, Anthropic, OpenAI, Stripe 등 22개 기본 탑재), 신입 어그리게이터, 공모전.
+크롤링 정책은 [crawling-policy.md](docs/crawling-policy.md) 참고.
 
 ## 하지 않는 일
 

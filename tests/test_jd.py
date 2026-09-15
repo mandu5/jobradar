@@ -26,11 +26,6 @@ def test_linkareer_jd_text():
     assert "NH농협은행" in r["text"] and "모집분야" in r["text"] and "<p>" not in r["text"]
 
 
-def test_linkedin_jd_criteria_and_body():
-    r = jd.jd_linkedin("4433412610", html=_read("linkedin_post.html"))
-    assert r["meta"]["criteria"] and len(r["text"]) > 300
-
-
 def test_naver_jd_starts_at_posting():
     r = jd.jd_naver("30005381", html=_read("naver_30005381.html"))
     assert "Robot System Software Engineer" in r["text"] and "모집 경력" in r["text"] and "무관" in r["text"]

@@ -1,7 +1,7 @@
 """Every parser must turn its fixture into >=1 Posting with a key, company, title and absolute url."""
 import re
 
-from radar.collectors import greenhouse, jumpit, line, linkareer, linkedin, naver, saramin, simplify, wanted, woowa
+from radar.collectors import greenhouse, jumpit, line, linkareer, naver, saramin, simplify, wanted
 from radar.model import Posting
 
 
@@ -47,22 +47,10 @@ def test_linkareer(fixture_text):
     assert any(p.career == "신입" for p in posts)
 
 
-def test_linkedin(fixture_text):
-    posts = linkedin.parse(fixture_text("linkedin.html"))
-    _check(posts, "linkedin", 5)
-    assert all(p.company for p in posts)
-
-
 def test_naver(fixture_json):
     posts = naver.parse(fixture_json("naver.json"))
     _check(posts, "naver", 5)
     assert sum(1 for p in posts if p.deadline) >= 3
-
-
-def test_woowa(fixture_json):
-    posts = woowa.parse(fixture_json("woowa.json"))
-    _check(posts, "woowa", 3)
-    assert all("min" in p.career for p in posts)
 
 
 def test_line(fixture_json):

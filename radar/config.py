@@ -50,17 +50,6 @@ ATS_BOARDS = [
 # collect.priority() decides what survives the cap, so raising it costs noise, not signal.
 MAX_PER_SOURCE = 70
 
-# LinkedIn guest search queries: (keywords, location, experience filter). f_E=2 entry level, 3 associate.
-LINKEDIN_QUERIES = [
-    ("AI engineer", "South Korea", "2"),
-    ("machine learning engineer", "South Korea", "2"),
-    ("data engineer", "South Korea", "2"),
-    ("AI engineer", "South Korea", "3"),
-    ("forward deployed engineer", "South Korea", ""),
-    ("machine learning engineer new grad", "United States", "2"),
-    ("research assistant machine learning", "Canada", ""),
-]
-
 # Wanted job_group_id 518 = 개발. years=0..2.
 WANTED_PARAMS = {"job_group_id": 518, "job_sort": "job.latest_order", "years": [0, 1, 2], "limit": 50, "offset": 0, "country": "kr"}
 

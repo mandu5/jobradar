@@ -99,7 +99,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--extra", action="append", default=[], help="JSON file with {'postings': [...]} to merge")
     ap.add_argument("--out", default="")
     ap.add_argument("--seen", default=str(seen_mod.DEFAULT))
-    ap.add_argument("--enrich", action="store_true", help="fetch detail text for title-only sources (linkedin, linkareer)")
+    ap.add_argument("--enrich", action="store_true", help="fetch detail text for title-only sources (linkareer)")
     a = ap.parse_args(argv)
 
     today = datetime.now(KST).strftime("%Y-%m-%d")

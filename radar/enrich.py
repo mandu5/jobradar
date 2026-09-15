@@ -16,21 +16,6 @@ from .model import Posting
 MAX_SNIPPET = 700
 
 
-def enrich_linkedin(p: Posting, html: str | None = None) -> dict:
-    jid = p.key.split(":")[1]
-    html = html if html is not None else get(f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{jid}").text
-    out: dict = {}
-    d = re.search(r'class="show-more-less-html__markup[^"]*"[^>]*>(.*?)</div>', html, re.S)
-    if d:
-        out["snippet"] = clean(d.group(1))[:MAX_SNIPPET]
-    crit = dict(re.findall(r'description__job-criteria-subheader">\s*([^<]+?)\s*</h3>\s*<span[^>]*>\s*([^<]+?)\s*</span>', html, re.S))
-    if crit:
-        parts = [f"{k}: {clean(v)}" for k, v in crit.items()]
-        out["career"] = clean(crit.get("Seniority level") or crit.get("직급") or "") or p.career
-        out["snippet"] = (" | ".join(parts) + " || " + out.get("snippet", ""))[:MAX_SNIPPET]
-    return out
-
-
 def enrich_linkareer(p: Posting, html: str | None = None) -> dict:
     aid = p.key.split(":")[1]
     html = html if html is not None else get(f"https://linkareer.com/activity/{aid}").text
@@ -53,7 +38,7 @@ def enrich_linkareer(p: Posting, html: str | None = None) -> dict:
     return out
 
 
-ENRICHERS = {"linkedin": enrich_linkedin, "linkareer": enrich_linkareer}
+ENRICHERS = {"linkareer": enrich_linkareer}
 
 
 def enrich_all(postings: list[Posting], limit_per_source: int = 60) -> dict[str, int]:

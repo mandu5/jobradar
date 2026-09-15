@@ -44,14 +44,14 @@ python -m radar.collect --only saramin,jumpit
 ```
 /jobradar setup    five questions: roles (and non-roles), experience rule, location,
                    company-type order, what you optimize for → profile + rubric
-/jobradar scan     12 collectors → data/candidates/<today>.json      (network only)
+/jobradar scan     10 collectors → data/candidates/<today>.json      (network only)
 /jobradar grade    rubric → A / B / C, one line of reasoning each → RADAR.md
 /jobradar today    scan, then grade
 ```
 
-Sources: 사람인, 원티드, 점핏, 링커리어, 네이버, 라인, 우아한형제들, LinkedIn (guest), Greenhouse /
-Ashby / Lever boards you list in `radar/config.py` (당근, 쿠팡, Anthropic, OpenAI, Stripe … 22
-shipped), a new-grad aggregator, and contests.
+Sources: 사람인, 원티드, 점핏, 링커리어, 네이버, 라인, Greenhouse / Ashby / Lever boards you list in
+`radar/config.py` (당근, 쿠팡, Anthropic, OpenAI, Stripe … 22 shipped), a new-grad aggregator, and
+contests. See [crawling policy](docs/crawling-policy.md) for what it fetches and how.
 
 ## What it will not do
 
@@ -115,7 +115,7 @@ silently returning zero postings. `pytest -q` — 80 tests.
 | Path | What |
 |---|---|
 | `skills/jobradar/SKILL.md`, `commands/jobradar.md` | the Claude Code skill and its `/jobradar` command |
-| `radar/collectors/` | 12 source parsers |
+| `radar/collectors/` | 10 source parsers |
 | `radar/prefilter.py` | drops the obvious noise before anything is graded |
 | `radar/enrich.py`, `jd.py` | pulls the full posting text for shortlisted rows |
 | `radar/deadlines.py` | your own fixed deadlines, merged into the digest |

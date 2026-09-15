@@ -67,16 +67,6 @@ def jd_linkareer(aid: str, html: str | None = None) -> dict:
     return {"text": _clip(head + "\n" + "\n".join(t for t in texts if t)), "meta": {"scale": act.get("recruitScale", ""), "jobTypes": act.get("jobTypes", [])}}
 
 
-def jd_linkedin(jid: str, html: str | None = None) -> dict:
-    html = html if html is not None else get(f"https://www.linkedin.com/jobs-guest/jobs/api/jobPosting/{jid}").text
-    d = re.search(r'class="show-more-less-html__markup[^"]*"[^>]*>(.*?)</div>', html, re.S)
-    crit = dict(re.findall(r'description__job-criteria-subheader">\s*([^<]+?)\s*</h3>\s*<span[^>]*>\s*([^<]+?)\s*</span>', html, re.S))
-    title = to_text(_g(r'<h2 class="top-card-layout__title[^"]*"[^>]*>(.*?)</h2>', html) or _g(r"<title>(.*?)</title>", html))
-    body = to_text(d.group(1)) if d else to_text(html)
-    crit_s = "\n".join(f"- {k}: {to_text(v)}" for k, v in crit.items())
-    return {"text": _clip(f"# {title}\n{crit_s}\n\n{body}"), "meta": {"criteria": {k: to_text(v) for k, v in crit.items()}}}
-
-
 def jd_naver(aid: str, html: str | None = None) -> dict:
     html = html if html is not None else get(f"https://recruit.navercorp.com/rcrt/view.do?annoId={aid}").text
     t = to_text(html)
@@ -154,7 +144,6 @@ HANDLERS = {
     "jumpit": lambda rest, url: jd_jumpit(rest),
     "greenhouse": lambda rest, url: jd_greenhouse(*rest.partition(":")[::2]),
     "linkareer": lambda rest, url: jd_linkareer(rest),
-    "linkedin": lambda rest, url: jd_linkedin(rest),
     "naver": lambda rest, url: jd_naver(rest),
     "saramin": lambda rest, url: jd_saramin(rest),
     "line": lambda rest, url: jd_line(rest),
