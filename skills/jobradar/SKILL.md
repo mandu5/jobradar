@@ -59,8 +59,9 @@ for what the scorer actually needs:
 Then:
 
 - Write `profile/profile.md` using `profile/profile.example.md` as the shape: Basics /
-  Experience / Skills (including the "not" list) / Preferences and constraints. Keep it under
-  60 lines. Put the experience rule in plain words.
+  Experience / Skills (including the "not" list) / Preferences and constraints. Keep only what
+  the scorer uses — it is read in full at the start of every `grade`. Put the experience rule
+  in plain words.
 - Write `profile/rubric.md` using `profile/rubric.example.md` as the shape. Fill the hard
   filters from answers 2–4, set the five weights from answer 5 (they must sum to 100), and keep
   every generic rule from the example — the role gate in §5 and the "cap, don't guess" rule in

@@ -43,4 +43,4 @@ STEP 7 — Commit and notify
 `git add data/apply && git commit -m "apply packages TODAY" && git pull --rebase --autostash origin main && git push origin main`.
 Send one message to <YOUR EMAIL>: subject `[job-radar packages MM/DD] N ready`, body = per posting: company · role · deadline · one-line recommendation · tracker link · 1-3 items you must confirm yourself. Send only when N ≥ 1.
 
-Hard rules: never apply, never log in anywhere, never send email to anyone else, never fabricate a fact or a number, never disclose employer-internal details beyond what your own corpus already states. Finish with a 3-line summary: packages written, failures, tracker and email status.
+Hard rules: never apply, never log in anywhere, never send email to anyone else, never fabricate a fact or a number, never disclose employer-internal details beyond what your own corpus already states. Finish with a short summary: packages written, failures, tracker and email status.
